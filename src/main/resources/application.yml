@@ -1,0 +1,48 @@
+micronaut:
+  application:
+    name: demo
+#  security:
+#    authentication: bearer
+#    token:
+#      jwt:
+#        signatures:
+#          secret:
+#            generator:
+#              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:1737cfe0-78ca-4cf1-a979-34b86f4a224f}"'
+#          jws-algorithm: HS256
+#        generator:
+#          refresh-token:
+#            enabled: true
+#            secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:1737cfe0-78ca-4cf1-a979-34b86f4a224f}"'
+#          access-token:
+#            expiration: 864000
+datasources:
+    default:
+      url: jdbc:postgresql://localhost:5432/postgres
+      driverClassName: org.postgresql.Driver
+      username: postgres
+      password: 'root'
+      schema-generate: create
+      dialect: postgres
+      schema: jdbc_kotlin
+endpoints:
+  beans:
+    enabled: true
+    sensitive: false
+  health:
+    details-visible: anonymous
+    enabled: true
+    sensitive: false
+  flyway:
+    enabled: true
+    sensitive: false
+flyway.datasources.default:
+    locations:
+flyway:
+  datasources:
+    default:
+      username: postgres
+      password: 'root'
+      locations: classpath:db/migrations
+      url: jdbc:postgresql://localhost:5432/postgres
+      schemas: jdbc_kotlin
